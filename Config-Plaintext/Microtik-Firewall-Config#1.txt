@@ -1,0 +1,105 @@
+# 2026-03-18 12:23:52 by RouterOS 7.21.3
+# software id = ZI0Z-LE87
+#
+# model = RB951Ui-2HnD
+# serial number = 643205B7C55D
+/interface vrrp
+add interface=ether1 name=vrrp1 priority=150 sync-connection-tracking=yes
+/snmp community
+set [ find default=yes ] addresses=10.3.0.0/24,10.3.99.1/32,172.31.0.102/32
+/system logging action
+add name=toFA remote=10.3.0.65 target=remote
+/ip address
+add address=10.3.99.2/24 comment="LINK TO L3" interface=ether1 network=10.3.99.0
+add address=10.3.99.10/24 interface=vrrp1 network=10.3.99.0
+/ip dns
+set allow-remote-requests=yes servers=192.100.77.10,1.1.1.1
+/ip dns static
+add name=facebook.com type=NXDOMAIN
+add name=*.facebook.com type=NXDOMAIN
+add name=fbcdn.net type=NXDOMAIN
+add name=*.fbcdn.net type=NXDOMAIN
+add name=messenger.com type=NXDOMAIN
+add name=*.messenger.com type=NXDOMAIN
+/ip firewall address-list
+add address=127.255.255.254 comment=placeholder list=discord-block
+add address=10.3.20.55 comment=test list=discord-block
+/ip firewall filter
+add action=drop chain=input comment="DISCORD AUTO BLOCK INPUT" src-address-list=discord-block
+add action=accept chain=input comment="ALLOW EST/REL INPUT" connection-state=established,related
+add action=drop chain=input comment="DROP INVALID INPUT" connection-state=invalid
+add action=drop chain=forward comment="DROP INVALID FWD" connection-state=invalid
+add action=accept chain=input comment=ALLOW-RASPI-INPUT src-address=10.3.0.69
+add action=accept chain=input comment=ALLOW-LAN-INPUT src-address=10.3.0.0/24
+add action=accept chain=input comment="ALLOW DNS FROM GUEST" dst-port=53 protocol=udp src-address=10.3.20.0/24
+add action=accept chain=input comment="ALLOW GUEST HTTP LOGIN" dst-port=80 protocol=tcp src-address=10.3.20.0/24
+add action=accept chain=input comment="ALLOW DNS TCP FROM GUEST" dst-port=53 protocol=tcp src-address=10.3.20.0/24
+add action=accept chain=input comment="ALLOW GUEST HTTPS LOGIN" dst-port=443 protocol=tcp src-address=10.3.20.0/24
+add action=drop chain=input comment="BLOCK VLAN20 TO ROUTER" src-address=10.3.20.0/24
+add action=accept chain=input comment="ALLOW DNS FROM VLAN30" dst-port=53 protocol=udp src-address=10.3.30.0/24
+add action=accept chain=input comment="ALLOW DNS TCP FROM VLAN30" dst-port=53 protocol=tcp src-address=10.3.30.0/24
+add action=accept chain=input comment=ALLOW-TAILSCALE-INPUT src-address=100.64.0.0/10
+add action=drop chain=input comment="BLOCK VLAN30 TO ROUTER" src-address=10.3.30.0/24
+add action=accept chain=input comment="ALLOW L3 TRANSIT" src-address=10.3.99.0/24
+add action=accept chain=input comment="ALLOW L2 SWITCH" src-address=10.3.0.100
+add action=accept chain=input comment="ALLOW VRRP VLAN99" protocol=vrrp src-address=10.3.99.0/24
+add action=accept chain=input comment="ALLOW CISCO PRIME" src-address=172.31.0.102
+add action=drop chain=input comment="DROP OTHER INPUT"
+add action=drop chain=forward comment="DISCORD AUTO BLOCK SRC" src-address-list=discord-block
+add action=drop chain=forward comment="DISCORD AUTO BLOCK DST" dst-address-list=discord-block
+add action=accept chain=forward comment="ALLOW EST/REL FWD" connection-state=established,related
+add action=accept chain=forward comment=ALLOW-TAILSCALE-FORWARD src-address=100.64.0.0/10
+add action=accept chain=forward comment="ALLOW DMZ DNS UDP" dst-port=53 protocol=udp src-address=172.30.0.0/24
+add action=accept chain=forward comment="ALLOW DMZ DNS TCP" dst-port=53 protocol=tcp src-address=172.30.0.0/24
+add action=log chain=forward dst-port=23 log-prefix=BLK-V20-TELNET protocol=tcp src-address=10.3.20.0/24
+add action=drop chain=forward dst-port=23 protocol=tcp src-address=10.3.20.0/24
+add action=log chain=forward dst-port=25 log-prefix=BLK-V20-SMTP protocol=tcp src-address=10.3.20.0/24
+add action=drop chain=forward dst-port=25 protocol=tcp src-address=10.3.20.0/24
+add action=log chain=forward dst-port=139 log-prefix=BLK-V20-NETBIOS protocol=tcp src-address=10.3.20.0/24
+add action=drop chain=forward dst-port=139 protocol=tcp src-address=10.3.20.0/24
+add action=log chain=forward dst-port=445 log-prefix=BLK-V20-SMB protocol=tcp src-address=10.3.20.0/24
+add action=drop chain=forward dst-port=445 protocol=tcp src-address=10.3.20.0/24
+add action=log chain=forward dst-port=23 log-prefix=BLK-V30-TELNET protocol=tcp src-address=10.3.30.0/24
+add action=drop chain=forward dst-port=23 protocol=tcp src-address=10.3.30.0/24
+add action=log chain=forward dst-port=25 log-prefix=BLK-V30-SMTP protocol=tcp src-address=10.3.30.0/24
+add action=drop chain=forward dst-port=25 protocol=tcp src-address=10.3.30.0/24
+add action=log chain=forward dst-port=139 log-prefix=BLK-V30-NETBIOS protocol=tcp src-address=10.3.30.0/24
+add action=drop chain=forward dst-port=139 protocol=tcp src-address=10.3.30.0/24
+add action=log chain=forward dst-port=445 log-prefix=BLK-V30-SMB protocol=tcp src-address=10.3.30.0/24
+add action=drop chain=forward dst-port=445 protocol=tcp src-address=10.3.30.0/24
+add action=log chain=forward dst-address=10.3.0.0/24 log-prefix=DMZ-TO-MGMT src-address=172.30.0.0/24
+add action=drop chain=forward comment="DMZ BLOCK TO MGMT" dst-address=10.3.0.0/24 src-address=172.30.0.0/24
+add action=log chain=forward dst-address=10.3.20.0/24 log-prefix=DMZ-TO-V20 src-address=172.30.0.0/24
+add action=drop chain=forward comment="DMZ BLOCK TO VLAN20" dst-address=10.3.20.0/24 src-address=172.30.0.0/24
+add action=log chain=forward dst-address=10.3.30.0/24 log-prefix=DMZ-TO-V30 src-address=172.30.0.0/24
+add action=drop chain=forward comment="DMZ BLOCK TO VLAN30" dst-address=10.3.30.0/24 src-address=172.30.0.0/24
+add action=accept chain=forward comment="MGMT TO DMZ SERVER" dst-address=172.30.0.10 dst-port=22,80,443 protocol=tcp src-address=10.3.0.0/24
+/ip firewall nat
+add action=masquerade chain=srcnat comment="NAT INTERNET" out-interface=ether1
+add action=redirect chain=dstnat comment="Force DNS VLAN20" disabled=yes dst-port=53 protocol=udp src-address=10.3.20.0/24 to-ports=53
+add action=redirect chain=dstnat dst-port=53 protocol=tcp src-address=10.3.20.0/24 to-ports=53
+add action=redirect chain=dstnat comment=";;; FORCE VLAN30 DNS TO ROUTER" disabled=yes dst-port=53 protocol=udp src-address=10.3.30.0/24 to-ports=53
+add action=redirect chain=dstnat comment=";;; FORCE VLAN30 DNS TCP TO ROUTER" dst-port=53 protocol=tcp src-address=10.3.30.0/24 to-ports=53
+/ip firewall service-port
+set irc disabled=no
+set rtsp disabled=no
+/ip route
+add comment="DEFAULT VIA L3" dst-address=0.0.0.0/0 gateway=10.3.99.1
+add comment="LAN VIA L3" dst-address=10.3.0.0/16 gateway=10.3.99.1
+add comment="DMZ via L3" dst-address=172.30.0.0/24 gateway=10.3.99.1
+add dst-address=100.64.0.0/10 gateway=10.3.0.69
+add dst-address=100.64.0.0/10 gateway=10.3.0.69
+add dst-address=100.64.0.0/10 gateway=10.3.0.69
+add dst-address=100.64.0.0/10 gateway=10.3.99.1
+add dst-address=10.3.0.0/24 gateway=10.3.99.1
+add dst-address=10.3.20.0/24 gateway=10.0.3.2
+/snmp
+set enabled=yes
+/system clock
+set time-zone-name=Asia/Bangkok
+/system identity
+set name=MikroTik-FW-01
+/system logging
+add action=toFA topics=firewall,info
+add action=toFA topics=firewall,info
+add action=toFA topics=firewall,info

@@ -1,0 +1,153 @@
+========================================
+CISCO CATALYST C9800-AP EMBEDDED WIRELESS CONTROLLER - CONFIGURATION
+========================================
+Device: Grorp3EWC
+IP Address: 10.3.50.50
+Hostname: Grorp3EWC
+
+SYSTEM INFORMATION
+==================
+Software Version: Cisco IOS XE Software, Version 17.15.04d
+Software Image: C9800-AP-K9_IOSXE-UNIVERSALK9-M
+Release: RELEASE SOFTWARE (fc4)
+Compiled: Fri 19-Dec-25 09:28 by mcpre
+Uptime: 3 days, 19 hours, 17 minutes
+System Image: /tmp/sw/rp/0/0/rp_wlc/mount/usr/binos/bin/linux_iosd-image
+Last Reload: reload at 18:44:31 UTC Sat Mar 7 2026
+
+NETWORK INTERFACES
+==================
+Interface: GigabitEthernet0 (UP)
+  - Input Hold Queue: 0
+  - Input Queue Drops: 0
+  - Output Hold Queue: 0
+  - Output Queue Drops: 0
+  - RX Rate (bits/sec): 0
+  - RX Rate (pkts/sec): 0
+  - TX Rate (bits/sec): 0
+  - TX Rate (pkts/sec): 0
+
+WIRELESS LOCAL AREA NETWORKS (WLANs)
+====================================
+Total WLANs: 3
+
+WLAN 1: Group03-EWC
+-----------
+  Identifier: 1
+  SSID: Group03-EWC
+  Status: DOWN (Disabled)
+  Broadcast SSID: Enabled
+  Description: (None)
+  
+  Client Configuration:
+    - Max Associated Clients per WLAN: 0 (Unlimited)
+    - Max Clients per AP: 0 (Unlimited)
+    - Max Clients per AP Radio: 200
+    - Active Clients: 0
+  
+  Features:
+    - OKC (Opportunistic Key Caching): Enabled
+    - CHD (Channel Directed Probe/Beacon): Enabled
+    - WMM (WiFi Multimedia): Allowed
+    - WiFi Direct Policy: Disabled
+    - Advertise-Apname: Disabled
+    - Universal AP Admin: Disabled
+    - Peer-to-Peer Blocking: Disabled
+    - CCX - AironetIe Support: Disabled
+    - Media Stream Multicast-direct: Disabled
+  
+  Channel Configuration:
+    - Configured Radio Bands: All
+    - Scan Defer Time: 100 msecs
+    - Channel Scan Priority: 5, 6 (default)
+    
+  Radio Band Status:
+    - 2.4GHz: UP
+    - 5GHz: UP
+    - 6GHz: DOWN (Requires WPA3 & dot11ax enabled)
+  
+  DTIM Period:
+    - 802.11a (5GHz): 1
+    - 802.11b (2.4GHz): 1
+  
+  Authentication & Authorization:
+    - Local EAP Authentication: Disabled
+    - Mac Filter: Disabled
+    - Mac Filter Override: Disabled
+    - 802.1x Authentication: Disabled
+    - 802.1x Authorization: Disabled
+    - Accounting List: (Not configured)
+  
+  Security Configuration:
+    - FT (Fast Roaming) Support: Adaptive
+      - FT Reassociation Timeout: 20 seconds
+      - FT Over-The-DS mode: Disabled
+    - Web-Based Authentication: Disabled
+    - OWE Transition Mode: Disabled
+    - Conditional Web Redirect: Disabled
+    - Splash-Page Web Redirect: Disabled
+    - Webauth on MAC Filter Failure: Disabled
+    
+    - WPA/WPA2/WPA3 (802.11 Security):
+      - WPA (SSN IE): Disabled
+      - WPA2 (RSN IE): Enabled
+        - MPSK (Multi-PSK): Disabled
+        - EasyPSK: Disabled
+        - AES Cipher: Enabled
+        - CCMP256 Cipher: Disabled
+        - GCMP128 Cipher: Disabled
+        - GCMP256 Cipher: Disabled
+        - Randomized GTK: Disabled
+      - WPA3 (WPA3 IE): Disabled
+      - 802.11 Authentication: Open System
+      - Static WEP Keys: Disabled
+      
+      - Auth Key Management:
+        - 802.1x: Disabled
+        - PSK: Enabled
+        - CCKM: Disabled
+        - FT dot1x: Disabled
+        - FT PSK: Disabled
+        - FT SAE: Disabled
+        - FT SAE-EXT-KEY: Disabled
+        - Dot1x-SHA256: Disabled
+        - PSK-SHA256: Disabled
+        - SAE: Disabled
+        - SAE-EXT-KEY: Disabled
+        - OWE: Disabled
+        - SUITEB-1X: Disabled
+        - SUITEB192-1X: Disabled
+      
+      - Advanced Security:
+        - SAE PWE Method: Hash to Element, Hunting and Pecking(H2E-HNP)
+        - Transition Disable: Disabled
+        - CCKM TSF Tolerance: 1000 msecs
+        - OSEN: Disabled
+        - PMF (Protected Management Frames): Disabled
+          - PMF Association Comeback Timeout: 1 second
+          - PMF SA Query Time: 200 msecs
+        - Beacon Protection: Disabled
+    
+    - 6GHz Security (Not applicable - 6GHz DOWN):
+      - WPA3 (WPA3 IE): Disabled
+      - SAE PWE Method: Hash to Element(H2E)
+
+WLAN 2: Group03-Admin
+-----------
+  Identifier: 2
+  SSID: Group03-Admin
+  Status: UP (Enabled)
+  Security: WPA2 with PSK and AES Cipher
+  (Detailed configuration not fully retrieved in this session)
+
+WLAN 3: group03 - EWC
+-----------
+  Identifier: 3
+  SSID: group03 - EWC
+  Status: DOWN (Disabled)
+  Security: Open (No encryption)
+  (Detailed configuration not fully retrieved in this session)
+
+========================================
+END OF CONFIGURATION REPORT
+========================================

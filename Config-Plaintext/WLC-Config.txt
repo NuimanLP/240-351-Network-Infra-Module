@@ -1,0 +1,261 @@
+ssh admin@10.3.0.1
+
+
+(Cisco Controller) 
+User: admin
+Password:********
+(Cisco Controller) >show run-config
+
+Press Enter to continue...
+
+System Inventory
+NAME: "Chassis"    , DESCR: "Cisco 2500 Series Wireless LAN Controller"
+PID: AIR-CT2504-K9,  VID: V07,  SN: PSZ20431BA7
+
+Burned-in MAC Address............................ 00:42:5A:54:C0:C0
+Maximum number of APs supported.................. 75
+Press Enter to continue or <ctrl-z> to abort
+
+
+System Information
+Manufacturer's Name.............................. Cisco Systems Inc.
+Product Name..................................... Cisco Controller
+Product Version.................................. 8.5.182.0
+Bootloader Version............................... 1.0.20
+Field Recovery Image Version..................... 7.6.101.1
+Firmware Version................................. PIC 20.0
+
+
+OUI File Last Update Time........................ Sun Sep 07 10:44:07 IST 2014
+
+
+Build Type....................................... DATA + WPS
+
+System Name...................................... WLC-Group03
+System Location.................................. 
+System Contact................................... 
+System ObjectID.................................. 1.3.6.1.4.1.9.1.1279
+IP Address....................................... 10.3.0.1
+IPv6 Address..................................... ::
+Last Reset....................................... Software reset
+System Up Time................................... 6 days 23 hrs 53 mins 41 secs
+System Timezone Location......................... (GMT +7:00) Saigon, Hanoi, Bangkok, Jakatar
+
+--More or (q)uit current module or <ctrl-z> to abort
+
+
+Backup Controller Configuration
+
+AP primary Backup Controller ....................  
+AP secondary Backup Controller ..................  
+Press Enter to continue or <ctrl-z> to abort
+
+
+
+(Cisco Controller) >show run-config
+
+Press Enter to continue...
+
+System Inventory
+NAME: "Chassis"    , DESCR: "Cisco 2500 Series Wireless LAN Controller"
+PID: AIR-CT2504-K9,  VID: V07,  SN: PSZ20431BA7
+
+Burned-in MAC Address............................ 00:42:5A:54:C0:C0
+Maximum number of APs supported.................. 75
+Press Enter to continue or <ctrl-z> to abort
+
+
+System Information
+Manufacturer's Name.............................. Cisco Systems Inc.
+Product Name..................................... Cisco Controller
+Product Version.................................. 8.5.182.0
+Bootloader Version............................... 1.0.20
+Field Recovery Image Version..................... 7.6.101.1
+Firmware Version................................. PIC 20.0
+
+
+OUI File Last Update Time........................ Sun Sep 07 10:44:07 IST 2014
+
+
+Build Type....................................... DATA + WPS
+
+System Name...................................... WLC-Group03
+System Location.................................. 
+System Contact................................... 
+System ObjectID.................................. 1.3.6.1.4.1.9.1.1279
+IP Address....................................... 10.3.0.1
+IPv6 Address..................................... ::
+Last Reset....................................... Software reset
+System Up Time................................... 6 days 23 hrs 54 mins 50 secs
+System Timezone Location......................... (GMT +7:00) Saigon, Hanoi, Bangkok, Jakatar
+
+--More or (q)uit current module or <ctrl-z> to abort
+
+
+(Cisco Controller) >show interface
+
+Incorrect usage.  Use the '?' or <TAB> key to list commands.
+
+(Cisco Controller) >show interface summary
+
+
+ Number of Interfaces.......................... 4
+
+Interface Name                   Port Vlan Id  IP Address      Type    Ap Mgr Guest
+-------------------------------- ---- -------- --------------- ------- ------ -----
+management                       LAG  10       10.3.0.1        Static  Yes    No   
+virtual                          N/A  N/A      192.0.2.1       Static  No     No   
+vlan20                           LAG  20       10.3.20.2       Dynamic No     No   
+vlan30                           LAG  30       10.3.30.2       Dynamic No     No   
+
+(Cisco Controller) >show wlan summary
+
+Number of WLANs.................................. 2
+
+WLAN ID  WLAN Profile Name / SSID                                                  Status    Interface Name
+-------  -------------------------------------                                    --------  --------------------
+1        Group03 / Group03                                                        Enabled   vlan20                
+2        Corporate03 / Corporate03                                                Enabled   vlan30                
+
+(Cisco Controller) >show dhcp summary
+
+  Scope Name                   Enabled          Address Range
+Cor_pool                         Yes      192.168.30.20 -> 192.168.30.100
+Management_Pool                  Yes      192.168.10.20 -> 192.168.10.50
+Guest_Pool                       Yes      192.168.20.20 -> 192.168.20.100
+
+
+(Cisco Controller) >show ap summary
+
+Number of APs.................................... 3
+
+Global AP User Name.............................. Not Configured
+Global AP Dot1x User Name........................ Not Configured
+
+AP Name                         Slots  AP Model              Ethernet MAC       Location              Country     IP Address       Clients  DSE Location  
+------------------------------  -----  --------------------  -----------------  --------------------  ----------  ---------------  -------  --------------
+AP01-G03                        2      AIR-AP2802I-S-K9       68:3b:78:66:1d:c8  default location      TH          10.3.0.55        0        [0 ,0 ,0 ]
+AP02-G03                        2      AIR-AP1815M-S-K9       00:2c:c8:e0:5d:a0  default location      TH          10.3.0.53        0        [0 ,0 ,0 ]
+AP03_outdoor_Group03            2      AIR-AP1562I-S-K9       38:0e:4d:bf:9f:dc  default location      TH          10.3.0.54        1        [0 ,0 ,0 ]
+
+(Cisco Controller) >show wlan id 1
+
+HELP:
+Special keys:
+  DEL, BS .... delete previous character
+  Ctrl-A  .... go to beginning of line
+  Ctrl-E  .... go to end of line
+  Ctrl-F  .... go forward one character
+  Ctrl-B  .... go backward one character
+  Ctrl-D  .... delete current character
+  Ctrl-U, X .. delete to beginning of line
+  Ctrl-K  .... delete to end of line
+  Ctrl-W  .... delete previous word
+  Ctrl-T  .... transpose previous character
+  Ctrl-P  .... go to previous line in history buffer
+  Ctrl-N  .... go to next line in history buffer
+  Ctrl-Z  .... return to root command prompt
+  Tab, <SPACE> command-line completion
+  Exit    .... go to next lower command prompt
+  ?       .... list choices
+
+(Cisco Controller) >show wlan 1
+
+
+WLAN Identifier.................................. 1
+Profile Name..................................... Group03
+Network Name (SSID).............................. Group03
+Status........................................... Enabled
+MAC Filtering.................................... Disabled
+Broadcast SSID................................... Enabled
+AAA Policy Override.............................. Disabled
+Network Admission Control
+Client Profiling Status
+    Radius Profiling ............................ Disabled
+     DHCP ....................................... Disabled
+     HTTP ....................................... Disabled
+    Local Profiling ............................. Disabled
+     DHCP ....................................... Disabled
+     HTTP ....................................... Disabled
+  Radius-NAC State............................... Disabled
+  SNMP-NAC State................................. Disabled
+  Quarantine VLAN................................ 0
+Maximum Clients Allowed.......................... Unlimited
+Security Group Tag............................... Unknown(0)
+
+--More-- or (q)uit
+Maximum number of Clients per AP Radio........... 200
+ATF Policy....................................... 0
+Number of Active Clients......................... 1
+Exclusionlist Timeout............................ 180 seconds
+Session Timeout.................................. 7200 seconds
+User Idle Timeout................................ Disabled
+Sleep Client..................................... disable
+Sleep Client Timeout............................. 720 minutes
+Web Auth Captive Bypass Mode..................... None
+User Idle Threshold.............................. 0 Bytes
+NAS-identifier................................... none
+CHD per WLAN..................................... Enabled
+Webauth DHCP exclusion........................... Disabled
+Interface........................................ vlan20
+Multicast Interface.............................. Not Configured
+WLAN IPv4 ACL.................................... unconfigured
+WLAN IPv6 ACL.................................... unconfigured
+WLAN Layer2 ACL.................................. unconfigured
+mDNS Status...................................... Disabled
+mDNS Profile Name................................ default-mdns-profile
+DHCP Server...................................... Default
+Central NAT Peer-Peer Blocking................... Unknown
+DHCP Address Assignment Required................. Disabled
+
+--More-- or (q)uit
+Static IP client tunneling....................... Disabled
+Tunnel Profile................................... Unconfigured
+Quality of Service............................... Silver
+Per-SSID Rate Limits............................. Upstream	Downstream
+Average Data Rate................................   0		  0
+Average Realtime Data Rate.......................   0		  0
+Burst Data Rate..................................   0		  0
+Burst Realtime Data Rate.........................   0		  0
+Per-Client Rate Limits........................... Upstream	Downstream
+Average Data Rate................................   0		  0
+Average Realtime Data Rate.......................   0		  0
+Burst Data Rate..................................   0		  0
+Burst Realtime Data Rate.........................   0		  0
+Scan Defer Priority.............................. 4,5,6
+Scan Defer Time.................................. 100 milliseconds
+WMM.............................................. Allowed
+WMM UAPSD Compliant Client Support............... Disabled
+Media Stream Multicast-direct.................... Disabled
+CCX - AironetIe Support.......................... Enabled
+CCX - Gratuitous ProbeResponse (GPR)............. Disabled
+CCX - Diagnostics Channel Capability............. Disabled
+Dot11-Phone Mode (7920).......................... Disabled
+Wired Protocol................................... 802.1P (Tag=0)
+
+--More-- or (q)uit
+(Cisco Controller) >show wlan 2
+
+
+WLAN Identifier.................................. 2
+Profile Name..................................... Corporate03
+Network Name (SSID).............................. Corporate03
+Status........................................... Enabled
+MAC Filtering.................................... Disabled
+Broadcast SSID................................... Enabled
+AAA Policy Override.............................. Disabled
+Network Admission Control
+Client Profiling Status
+    Radius Profiling ............................ Disabled
+     DHCP ....................................... Disabled
+     HTTP ....................................... Disabled
+    Local Profiling ............................. Disabled
+     DHCP ....................................... Disabled
+     HTTP ....................................... Disabled
+  Radius-NAC State............................... Disabled
+  SNMP-NAC State................................. Disabled
+  Quarantine VLAN................................ 0
+Maximum Clients Allowed.......................... Unlimited
+Security Group Tag............................... Unknown(0)
+
+--More-- or (q)uit

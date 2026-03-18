@@ -1,0 +1,68 @@
+L2-Group03#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+L2-Group03#show running-config
+Building configuration...
+
+Current configuration : 6466 bytes
+!
+! Last configuration change at 18:02:29 UTC Sat Mar 14 2026
+! NVRAM config last updated at 12:12:28 UTC Wed Mar 18 2026 by primeadmin
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname L2-Group03
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username primeadmin privilege 15 secret 5 $1$q5rL$dkBSGCNWiNko30eVQORAJ.
+no aaa new-model
+switch 1 provision ws-c2960x-48fps-l
+!
+!
+!
+!
+ip routing
+ip dhcp excluded-address 10.3.0.236
+ip dhcp excluded-address 10.50.0.1 10.50.0.10
+!
+ip dhcp pool AP1562-RESERVE
+ host 10.3.0.236 255.255.255.0
+ hardware-address 380e.4dbf.9fdc
+ default-router 10.3.0.254 
+ dns-server 192.100.77.10 
+!
+ip dhcp pool VLAN50_AP
+ network 10.50.0.0 255.255.255.0
+ default-router 10.50.0.1 
+ dns-server 192.100.77.12 
+!
+ip dhcp pool AP_POOL_VLAN50
+ network 10.3.50.0 255.255.255.0
+ default-router 10.3.50.1 
+!
+!
+ip dhcp snooping vlan 20,30
+ip dhcp snooping
+ip domain-name lab.local
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-399905152
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-399905152
+ revocation-check none
+ rsakeypair TP-self-signed-399905152
+!
+!
+crypto pki certificate chain TP-self-signed-399905152
