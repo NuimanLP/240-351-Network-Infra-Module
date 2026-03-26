@@ -44,8 +44,8 @@
 
 | SSID | Controller | VLAN | Security |
 |---|---|---|---|
-| Group03 | WLC | 20 (Guest) | WPA2-PSK |
-| Corporate03 | WLC | 30 (Staff) | WPA2 |
+| Group03 | WLC | 20 (Guest) | WPA2-Web AUTH |
+| Corporate03 | WLC | 30 (Staff) | WPA2-802.1X |
 | Group03-Admin | EWC | — | WPA2-PSK |
 
 ---
